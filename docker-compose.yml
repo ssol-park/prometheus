@@ -1,0 +1,20 @@
+services:
+  prometheus:
+    image: prom/prometheus:2.32.1
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./rules:/etc/prometheus/rules
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+
+    networks:
+      - loki-network
+
+networks:
+  loki-network:
+    external: true
+
