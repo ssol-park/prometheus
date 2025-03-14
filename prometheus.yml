@@ -1,5 +1,5 @@
 global:
-  scrape_interval: 15s
+  scrape_interval: 5s
   evaluation_interval: 15s
 
 scrape_configs:
@@ -7,3 +7,6 @@ scrape_configs:
     metrics_path: "/metrics"
     static_configs:
       - targets: ["app-tz:8080"]
+        labels:
+          application: 'my-app'
+          instance: 'server-01'
